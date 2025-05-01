@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: codeshannon/ticketing-microservice-app-auth-service
+          ports:
+            - containerPort: 4000
+          # env:
+          #   - name: DB_HOST
+          #     value: ${DB_HOST}
+          #   - name: DB_PORT
+          #     value: ${DB_PORT}
+          #   - name: DB_USER
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: db-secret
+          #         key: username
+          #   - name: DB_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: db-secret
+          #         key: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  type: ClusterIP
+  selector:
+    app: auth
+  ports:
+    - name: auth
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
