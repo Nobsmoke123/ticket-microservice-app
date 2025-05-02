@@ -1,16 +1,15 @@
-import express, { Request, Response } from 'express';
-
+import express from 'express';
+import { currentUserRouter, signInRouter, signOutRouter, signUpRouter } from './routes';
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(currentUserRouter);
+app.use(signUpRouter);
+app.use(signInRouter);
+app.use(signOutRouter);
 
-app.get('/api/users/currentUser', (req: Request, res: Response) => {
-    res.status(200).json({
-        message: 'Auth service is running'
-    })
-});
 
 export default app;
