@@ -21,6 +21,7 @@ const errorHandler: ErrorRequestHandler = (
       error: err.issues.map((issue) => issue.message),
       code: 400,
     });
+    return;
   }
 
   if (process.env.NODE_ENV === "development") {
@@ -35,6 +36,7 @@ const errorHandler: ErrorRequestHandler = (
     error: "Something went wrong!",
     code: 500,
   });
+
   return;
 };
 

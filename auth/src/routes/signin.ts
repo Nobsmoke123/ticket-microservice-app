@@ -1,11 +1,16 @@
-import { Router, Request, Response} from 'express';
+import { Router } from "express";
+import AuthController from "../controllers/auth.controller";
+import { ValidateZodSchema, AsyncWrapper } from "../middlewares";
+import { loginSchema } from "../schemas/auth";
 
 const router = Router();
 
-router.post('/api/users/signin', (_req: Request, res: Response) => {
-    res.status(200).json({
-        message: 'Auth service is running'
-    })
-});
+const authController = new AuthController();
+
+router.post(
+  "/signin",
+  ValidateZodSchema(loginSchema),
+  AsyncWrapper(authController.signIn)
+);
 
 export { router as signInRouter };

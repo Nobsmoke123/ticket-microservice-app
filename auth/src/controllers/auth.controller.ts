@@ -1,9 +1,17 @@
 import { Request, Response } from "express";
+import { LoginInput } from "../schemas/auth";
 
 export default class AuthController {
   currentUser = async (_req: Request, _res: Response) => {};
 
-  signIn = async (_req: Request, _res: Response) => {};
+  signIn = async (
+    req: Request<{}, {}, LoginInput["body"], {}, {}>,
+    res: Response
+  ) => {
+    const { email, password } = req.body;
+    res.status(200).json({ email, password });
+    return;
+  };
 
   signOut = async (_req: Request, _res: Response) => {};
 

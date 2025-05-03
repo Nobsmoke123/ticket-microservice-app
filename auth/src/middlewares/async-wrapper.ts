@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 
-const asyncWrapper =
-  <Params = {}, ResBody = any, ReqBody = any, ReqQuery = any, T = any>(
+const AsyncWrapper =
+  <Params = {}, ResBody = {}, ReqBody = any, ReqQuery = any, T = any>(
     fn: (
-      req: Request<Params, ResBody, ReqBody, ReqQuery>,
+      req: Request<Params, ResBody, ReqBody, ReqQuery, {}>,
       res: Response,
       next: NextFunction
     ) => Promise<T>
@@ -21,4 +21,4 @@ const asyncWrapper =
     }
   };
 
-export default asyncWrapper;
+export default AsyncWrapper;
