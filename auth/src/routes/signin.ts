@@ -2,10 +2,11 @@ import { Router } from "express";
 import AuthController from "../controllers/auth.controller";
 import { ValidateZodSchema, AsyncWrapper } from "../middlewares";
 import { loginSchema } from "../schemas/auth";
+import container from "../config/container";
 
 const router = Router();
 
-const authController = new AuthController();
+const authController = container.resolve(AuthController);
 
 router.post(
   "/signin",

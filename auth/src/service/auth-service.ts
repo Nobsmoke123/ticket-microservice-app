@@ -1,6 +1,8 @@
+import { injectable } from "tsyringe";
 import { BadRequestError, NotFoundError, UnauthorizedError } from "../errors";
 import User from "../models/user";
 
+@injectable()
 export default class AuthService {
   signInUser = async (email: string, password: string) => {
     const user = await User.findOne({ email });
@@ -22,16 +24,17 @@ export default class AuthService {
     }
   };
 
-  signUpUser = async (email: string, password: string) => {
+  signUpUser = async (fullname: string, email: string, password: string) => {
     const user = await User.findOne({ email });
     if (user) {
       throw new BadRequestError("Email already exists.");
     }
-    const newUser = User.build({ email, password });
+    const newUser = User.build({ fullname, email, password });
     await newUser.save();
 
     return {
       id: newUser._id,
+      fullname: newUser.fullname,
       email: newUser.email,
       createdAt: newUser.createdAt,
       updatedAt: newUser.updatedAt,

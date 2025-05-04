@@ -2,13 +2,14 @@ import { Schema, model, Model, HydratedDocument } from "mongoose";
 import bcrypt from "bcrypt";
 
 export interface IUser {
+  fullname: string;
   email: string;
   password: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-type UserAttribute = { email: string; password: string };
+type UserAttribute = { fullname: string; email: string; password: string };
 
 interface IUserMethods {
   comparePassword(candidatePassword: string): Promise<boolean>;
@@ -20,6 +21,11 @@ interface IUserModel extends Model<IUser, {}, IUserMethods> {
 
 const userSchema = new Schema<IUser, IUserModel, IUserMethods>(
   {
+    fullname: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     email: {
       type: String,
       required: true,
