@@ -9,7 +9,7 @@ const router = Router();
 const authController = container.resolve(AuthController);
 
 router.post(
-  "/api/users/signup",
+  "/signup",
   ValidateZodSchema(signUpSchema),
   AsyncWrapper(authController.signUp)
 );
