@@ -1,8 +1,10 @@
+import "reflect-metadata";
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import { authRouter } from "./routes";
 import { ErrorHandler } from "./middlewares";
+import "./config/container";
 
 const app = express();
 

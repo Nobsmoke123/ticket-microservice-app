@@ -22,13 +22,20 @@ export const loginSchema = z.object({
 
 export const signUpSchema = z.object({
   body: z.object({
-    email: z.string({}).email({}),
+    email: z
+      .string({
+        required_error: `'Email' is required.`,
+        invalid_type_error: `'Email' must be a string.`,
+      })
+      .email({
+        message: `'Email' must be a valid email address.`,
+      }),
     fullname: z
       .string({
         required_error: `'Fullname' is required.`,
         invalid_type_error: `'Fullname' must be a string.`,
       })
-      .min(6, `'Fullname' must be at least 3 characters long.`),
+      .min(6, `'Fullname' must be at least 6 characters long.`),
     password: z
       .string({
         required_error: `'Password' is required.`,

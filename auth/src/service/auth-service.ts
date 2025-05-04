@@ -14,6 +14,7 @@ export default class AuthService {
     if (await user.comparePassword(password)) {
       return {
         id: user._id,
+        fullname: user.fullname,
         email: user.email,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
