@@ -1,5 +1,5 @@
 import { injectable } from "tsyringe";
-import { BadRequestError, NotFoundError, UnauthorizedError } from "../errors";
+import { BadRequestError, UnauthorizedError } from "../errors";
 import User from "../models/user";
 
 @injectable()
@@ -8,7 +8,7 @@ export default class AuthService {
     const user = await User.findOne({ email });
 
     if (!user) {
-      throw new NotFoundError("User not found.");
+      throw new UnauthorizedError("Invalid email or password.");
     }
 
     if (await user.comparePassword(password)) {
