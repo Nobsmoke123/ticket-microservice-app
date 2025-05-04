@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import { LoginInput } from "../schemas/auth";
+import AuthService from "../service/auth-service";
 
 export default class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
   currentUser = async (_req: Request, _res: Response) => {};
 
   signIn = async (
