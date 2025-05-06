@@ -4,7 +4,7 @@ declare global {
       user: string;
       session: {
         jwt: string;
-      };
+      } | null;
     }
   }
 }
