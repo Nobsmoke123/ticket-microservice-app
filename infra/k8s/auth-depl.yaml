@@ -17,21 +17,12 @@ spec:
           image: codeshannon/ticketing-microservice-app-auth-service
           ports:
             - containerPort: 4000
-          # env:
-          #   - name: DB_HOST
-          #     value: ${DB_HOST}
-          #   - name: DB_PORT
-          #     value: ${DB_PORT}
-          #   - name: DB_USER
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: db-secret
-          #         key: username
-          #   - name: DB_PASSWORD
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: db-secret
-          #         key: password
+          env:
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_SECRET_KEY
 ---
 apiVersion: v1
 kind: Service

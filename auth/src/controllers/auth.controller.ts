@@ -24,17 +24,6 @@ export default class AuthController {
     // Set the JWT token in the session
     req.session = req.session ? { ...req.session, jwt } : { jwt };
 
-    // // Set the JWT token in the response header
-    // res.setHeader("Authorization", `Bearer ${jwt}`);
-    // // Set the JWT token in the response body
-    // res.setHeader("x-auth-token", jwt);
-    // // Set the JWT token in the response cookie
-    // res.cookie("jwt", jwt, {
-    //   httpOnly: true,
-    //   secure: true, // Set to true in production
-    //   sameSite: "strict", // Prevent CSRF attacks
-    //   maxAge: 60 * 60 * 1000, // 1 hour
-    // });
     res.status(200).json(result);
     return;
   };
@@ -47,6 +36,13 @@ export default class AuthController {
   ) => {
     const { fullname, email, password } = req.body;
     const result = await this.authService.signUpUser(fullname, email, password);
+    const jwt = createJwtToken({
+      userId: result.id.toString(),
+      email: result.email,
+    });
+
+    // Set the JWT token in the session
+    req.session = req.session ? { ...req.session, jwt } : { jwt };
     res.status(201).json(result);
     return;
   };

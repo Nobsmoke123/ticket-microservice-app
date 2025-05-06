@@ -44,6 +44,14 @@ const userSchema = new Schema<IUser, IUserModel, IUserMethods>(
     timestamps: true,
     versionKey: false,
     autoIndex: true,
+    toJSON: {
+      transform: (_doc, ret) => {
+        ret.id = ret._id;
+        delete ret.password;
+        delete ret.__v;
+        return ret;
+      },
+    },
   }
 );
 

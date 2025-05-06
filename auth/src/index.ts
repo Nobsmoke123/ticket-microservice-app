@@ -2,6 +2,7 @@ import http from "node:http";
 import app from "./app";
 import dotenv from "dotenv";
 import { connectDB } from "./utils";
+import "./global/global";
 dotenv.config();
 
 const PORT = parseInt(process.env?.PORT || "4000");
