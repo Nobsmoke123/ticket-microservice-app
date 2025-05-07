@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { verifyJwtToken } from "../utils/token";
+import { TokenUtils } from "../utils";
 import { UnauthorizedError } from "../errors";
 
 /**
@@ -20,7 +20,7 @@ export const authenticated = (
   }
 
   try {
-    const decoded = verifyJwtToken(token);
+    const decoded = TokenUtils.verifyJwtToken(token);
     req.user = JSON.stringify(decoded);
     next();
   } catch (error) {

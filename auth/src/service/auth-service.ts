@@ -13,7 +13,7 @@ export default class AuthService {
 
     if (await user.comparePassword(password)) {
       return {
-        id: user._id,
+        id: user._id.toString(),
         fullname: user.fullname,
         email: user.email,
         createdAt: user.createdAt,
@@ -34,7 +34,7 @@ export default class AuthService {
     await newUser.save();
 
     return {
-      id: newUser._id,
+      id: newUser._id.toString(),
       fullname: newUser.fullname,
       email: newUser.email,
       createdAt: newUser.createdAt,

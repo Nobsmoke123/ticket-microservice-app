@@ -1,5 +1,6 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
+import "reflect-metadata";
 // import app from "../src/app";
 
 let mongoServer: MongoMemoryServer;

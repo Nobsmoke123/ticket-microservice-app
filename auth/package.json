@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "Authentication service for the application.",
   "devDependencies": {
+    "@jest-mock/express": "^3.0.0",
     "@tsconfig/node22": "^22.0.1",
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-session": "^2.0.49",

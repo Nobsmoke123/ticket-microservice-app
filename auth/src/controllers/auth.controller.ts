@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { LoginInput, SignUpInput } from "../schemas/auth";
 import AuthService from "../service/auth-service";
 import { injectable } from "tsyringe";
-import { createJwtToken } from "../utils/token";
+import { TokenUtils } from "../utils";
 
 @injectable()
 export default class AuthController {
@@ -16,14 +16,14 @@ export default class AuthController {
   ) => {
     const { email, password } = req.body;
     const result = await this.authService.signInUser(email, password);
-    const jwt = createJwtToken({
+    const jwt = TokenUtils.createJwtToken({
       userId: result.id.toString(),
       email: result.email,
     });
 
     // Set the JWT token in the session
     req.session = req.session ? { ...req.session, jwt } : { jwt };
-
+    result.token = jwt;
     res.status(200).json(result);
     return;
   };
@@ -36,11 +36,11 @@ export default class AuthController {
   ) => {
     const { fullname, email, password } = req.body;
     const result = await this.authService.signUpUser(fullname, email, password);
-    const jwt = createJwtToken({
+    const jwt = TokenUtils.createJwtToken({
       userId: result.id.toString(),
       email: result.email,
     });
-
+    result.token = jwt;
     // Set the JWT token in the session
     req.session = req.session ? { ...req.session, jwt } : { jwt };
     res.status(201).json(result);
