@@ -10,7 +10,7 @@ module.exports = {
       tsconfig: "./tsconfig.json",
     },
   },
-  collectCoverage: true,
+  // collectCoverage: true,
   testMatch: ["**/tests/**/*.spec.ts"],
   moduleFileExtensions: ["ts", "js", "json"],
   coveragePathIgnorePatterns: ["/node_modules/"],
