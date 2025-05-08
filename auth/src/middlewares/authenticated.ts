@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { TokenUtils } from "../utils";
 import { UnauthorizedError } from "../errors";
-
 /**
  * Middleware to check if the user is authenticated.
  * It verifies the JWT token and sets the user information in the request object.

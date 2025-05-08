@@ -3,11 +3,17 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   // transform: {
-  //   "^.+\.tsx?$": ["ts-jest",{}],
+  //   "^.+.tsx?$": ["ts-jest", {}],
   // },
-  testMatch: ['**/tests/**/*.spec.ts'],
-  moduleFileExtensions: ['ts', 'js', 'json'],
-  coveragePathIgnorePatterns: ['/node_modules/'],
-  rootDir: './',
-  setupFilesAfterEnv: ['./tests/setup.ts'],
+  // globals: {
+  //   "ts-jest": {
+  //     tsconfig: "./tsconfig.json",
+  //   },
+  // },
+  // collectCoverage: true,
+  testMatch: ["**/tests/**/*.spec.ts"],
+  moduleFileExtensions: ["ts", "js", "json"],
+  coveragePathIgnorePatterns: ["/node_modules/"],
+  rootDir: "./",
+  setupFilesAfterEnv: ["./tests/setup.ts"],
 };

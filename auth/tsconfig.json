@@ -21,7 +21,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "types": ["node", "jest"],
+    "typeRoots": ["./node_modules/@types", "./src/global"],
   },
-  "include": ["src/**/*", "tests/**/*"],
+  "include": ["src/**/*", "src/global/global.d.ts", "tests/**/*"],
   "exclude": ["node_modules"]
 }
