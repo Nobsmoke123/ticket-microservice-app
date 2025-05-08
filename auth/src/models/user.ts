@@ -16,7 +16,7 @@ interface IUserMethods {
 }
 
 interface IUserModel extends Model<IUser, {}, IUserMethods> {
-  build(attributes: UserAttribute): HydratedDocument<IUser>;
+  build(attributes: UserAttribute): HydratedDocument<IUser, IUserMethods>;
 }
 
 const userSchema = new Schema<IUser, IUserModel, IUserMethods>(
@@ -47,6 +47,7 @@ const userSchema = new Schema<IUser, IUserModel, IUserMethods>(
     toJSON: {
       transform: (_doc, ret) => {
         ret.id = ret._id;
+        delete ret._id;
         delete ret.password;
         delete ret.__v;
         return ret;
@@ -68,7 +69,7 @@ userSchema.pre("save", async function (next) {
 
 userSchema.statics.build = (
   attributes: UserAttribute
-): HydratedDocument<IUser> => {
+): HydratedDocument<IUser, IUserMethods> => {
   return new User(attributes);
 };
 

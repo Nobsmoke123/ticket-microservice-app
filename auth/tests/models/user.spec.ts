@@ -19,7 +19,7 @@ describe("User Model", () => {
     expect(found?.password).not.toBe(userAttributes.password);
   });
 
-  it("should compare password correctly", async () => {
+  it("should hash password correctly", async () => {
     const userAttributes = {
       email: "test@gmail.com",
       password: "test123",
@@ -31,5 +31,40 @@ describe("User Model", () => {
 
     expect(user.password).not.toBe(userAttributes.password);
     expect(user.password.length).toBeGreaterThan(20);
+  });
+
+  it("should not return password and __v when converting to JSON", async () => {
+    const userAttributes = {
+      email: "test@email.com",
+      password: "test123",
+      fullname: "Test User",
+    };
+
+    const user = User.build(userAttributes);
+    await user.save();
+
+    const userJson = user.toJSON();
+
+    expect(userJson.__v).toBeUndefined();
+    expect(userJson.password).toBeUndefined();
+    expect(userJson).toHaveProperty("id");
+    expect(userJson).not.toHaveProperty("_id");
+  });
+
+  it("should compare password correctly", async () => {
+    const userAttributes = {
+      email: "test@email.com",
+      password: "test123",
+      fullname: "Test User",
+    };
+
+    const user = User.build(userAttributes);
+    await user.save();
+
+    const isMatch = await user.comparePassword("test123");
+    expect(isMatch).toBe(true);
+
+    const isNotMatch = await user.comparePassword("123test");
+    expect(isNotMatch).toBe(false);
   });
 });
