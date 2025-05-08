@@ -13,7 +13,6 @@ interface ITokenPayload {
 
 export const createJwtToken = (payload: ITokenPayload) => {
   const secretKey = process.env.JWT_SECRET_KEY || "defaultSecretKey";
-  console.log("secretKey", secretKey);
   const token = jwt.sign(payload, secretKey, {
     expiresIn: "1h", // Token expiration time
   });
@@ -22,7 +21,6 @@ export const createJwtToken = (payload: ITokenPayload) => {
 
 export const verifyJwtToken = (token: string) => {
   const secretKey = process.env.JWT_SECRET_KEY || "defaultSecretKey";
-  console.log("secretKey", secretKey);
   const decoded = jwt.verify(token, secretKey) as ITokenPayload;
   return decoded;
 };
