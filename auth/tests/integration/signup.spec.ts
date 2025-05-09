@@ -62,4 +62,18 @@ describe("POST /api/users/signup", () => {
     expect(response2.status).toBe(400);
     expect(response2.body).toHaveProperty("message", ["Email already exists."]);
   });
+
+  it("should return 400 for missing required fields", async () => {
+    const userAttributes = {
+      email: "test@email.com",
+      password: "password123",
+    };
+
+    const response = await request(app).post(URL).send(userAttributes);
+
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty("message", [
+      "'Fullname' is required.",
+    ]);
+  });
 });
