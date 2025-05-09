@@ -38,10 +38,10 @@ describe("POST /api/users/signup", () => {
     expect(response.body.message).toContain(
       "'Email' must be a valid email address."
     );
-    expect(response.body.error).toContain(
+    expect(response.body.message).toContain(
       "'Fullname' must be at least 6 characters long."
     );
-    expect(response.body.error).toContain(
+    expect(response.body.message).toContain(
       "'Password' must be at least 8 characters long."
     );
   });
@@ -60,6 +60,6 @@ describe("POST /api/users/signup", () => {
 
     expect(response1.status).toBe(201);
     expect(response2.status).toBe(400);
-    expect(response2.body).toHaveProperty("error");
+    expect(response2.body).toHaveProperty("message", ["Email already exists."]);
   });
 });
