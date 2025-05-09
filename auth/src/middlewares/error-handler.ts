@@ -18,7 +18,7 @@ const errorHandler: ErrorRequestHandler = (
 
   if (err instanceof ZodError) {
     res.status(400).json({
-      error: err.issues.map((issue) => issue.message),
+      message: err.issues.map((issue) => issue.message),
       code: 400,
     });
     return;

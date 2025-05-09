@@ -1,5 +1,5 @@
-import AuthService from "../../src/service/auth-service";
-import User, { IUser } from "../../src/models/user";
+import AuthService from "../../../src/service/auth-service";
+import User, { IUser } from "../../../src/models/user";
 import { HydratedDocument } from "mongoose";
 
 describe("AuthService", () => {

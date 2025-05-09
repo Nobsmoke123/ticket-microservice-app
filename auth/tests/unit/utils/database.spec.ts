@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import Logger from "../../src/utils/logger";
-import connectDB from "../../src/utils/database";
+import Logger from "../../../src/utils/logger";
+import connectDB from "../../../src/utils/database";
 
 describe("Database Connection", () => {
   process.env.MONGO_URI = "testMongoURI";

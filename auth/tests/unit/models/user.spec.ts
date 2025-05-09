@@ -1,4 +1,4 @@
-import User from "../../src/models/user";
+import User from "../../../src/models/user";
 
 describe("User Model", () => {
   it("it should create a user with the given attributes", async () => {

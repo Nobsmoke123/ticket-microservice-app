@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { createJwtToken, verifyJwtToken } from "../../src/utils/token";
+import { createJwtToken, verifyJwtToken } from "../../../src/utils/token";
 
 describe("Token Utility Functions", () => {
   jest.spyOn(jwt, "sign").mockImplementation(() => "mockedToken");

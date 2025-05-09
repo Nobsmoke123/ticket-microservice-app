@@ -1,7 +1,7 @@
 import { getMockReq, getMockRes } from "@jest-mock/express";
-import AuthController from "../../src/controllers/auth.controller";
-import AuthService from "../../src/service/auth-service";
-import { TokenUtils } from "../../src/utils";
+import AuthController from "../../../src/controllers/auth.controller";
+import AuthService from "../../../src/service/auth-service";
+import { TokenUtils } from "../../../src/utils";
 
 describe("AuthController", () => {
   let authController: AuthController;
