@@ -33,7 +33,6 @@ const userSchema = new Schema<IUser, IUserModel, IUserMethods>(
       trim: true,
       lowercase: true,
     },
-
     password: {
       type: String,
       required: true,
